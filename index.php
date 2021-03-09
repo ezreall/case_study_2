@@ -46,10 +46,9 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
+    <img src="" alt="">
 </nav>
-
 <main role="main">
-
     <div class="jumbotron">
         <div class="container">
             <h1 class="display-3">Hello, world!</h1>

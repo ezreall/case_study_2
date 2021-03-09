@@ -1,4 +1,4 @@
-<?php var_dump($comment) ?>
+
 <ul>
     <?php foreach ($comments as $comment): ?>
         <li>

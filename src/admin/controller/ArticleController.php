@@ -60,7 +60,9 @@ class ArticleController
             $name_articles = $_POST['name_articles'];
             $date = $_POST['date'];
             $content = $_POST['content'];
-            $img = $_POST['img'];
+            $img = $_FILES['img']['name'];
+            $img_tmp = $_FILES['img']['tmp_name'];
+            move_uploaded_file($img_tmp, 'img/' . $img);
             $this->Article->updateArticle($categorie_id, $id, $name_articles, $date, $content,$img);
             header('location:admin.php?page=Article_admin');
         }

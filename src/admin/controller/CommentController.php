@@ -28,14 +28,11 @@ class CommentController
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $comments = $this->Comment->getAllComment();
             include 'src/admin/view/comment/add.php';
-        } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $article_id = $_POST['article_id'];
-            $id = $_POST['id'];
-            $content = $_POST['content'];
-            $username = $_POST['username'];
-            $date = $_POST['date'];
-            $this->Comment->addComment($article_id,$id,$content, $username, $date);
-            var_dump($this);
+        } else{
+            $content = $_REQUEST['content'];
+            $username = $_REQUEST['username'];
+            $date = $_REQUEST['date'];
+            $this->Comment->addComment($content, $username, $date);
             include 'src/admin/view/comment/add.php';
         }
     }

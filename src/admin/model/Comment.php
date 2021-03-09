@@ -29,17 +29,16 @@ class Comment
         return $stml->fetch();
     }
 
-    public function addComment($article_id,$id,$content, $username, $date)
+    public function addComment($content, $username, $date)
     {
         try{
-            $sql = "INSERT INTO comments(article_id,id,content,username,date) VALUES(:article_id,:id,:content,:username,:date)";
+            $sql = "INSERT INTO comments(`content`,`username`,`date`) VALUES(?,?,?)";
             $stml = $this->database->prepare($sql);
-            $stml->bindValue(":article_id", $article_id);
-            $stml->bindValue(":id", $id);
-            $stml->bindValue(":content", $content);
-            $stml->bindValue(":username", $username);
-            $stml->bindValue(":date", $date);
+            $stml->bindParam(1, $content);
+            $stml->bindParam(2, $username);
+            $stml->bindParam(3, $date);
             $stml->execute();
+             var_dump($stml->execute());
             return $stml->fetchAll();
         }catch (\Exception $exception){
             echo $exception;
@@ -50,13 +49,13 @@ class Comment
     public function updateComment( $article_id,$id,$content, $username, $date)
     {
         try {
-            $sql = "UPDATE  comments SET article_id=:article_id,content=:content,username=:username,date=:date WHERE id=:id";
+            $sql = "UPDATE  comments SET content=:content,username=:username,date=:date,article_id=:article_id WHERE id=:id";
             $stml = $this->database->prepare($sql);
-            $stml->bindValue(":article_id", $article_id);
             $stml->bindValue(":id", $id);
             $stml->bindValue(":content", $content);
             $stml->bindValue(":username", $username);
             $stml->bindValue(":date", $date);
+            $stml->bindValue(":article_id", $article_id);
             var_dump($id);
             var_dump($content);
             var_dump($username);

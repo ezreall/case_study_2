@@ -19,6 +19,6 @@ if (isset($message)) {
     </div>
     <div class="form-group">
         <input type="submit" value="Create" class="btn btn-primary"/>
-        <a href="index.php?page=comment_index" class="btn btn-default">Cancel</a>
+        <a href="admin.php?page=Comment_admin" class="btn btn-default">Cancel</a>
     </div>
 </form>

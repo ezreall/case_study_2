@@ -29,12 +29,6 @@ require __DIR__ . '/vendor/autoload.php';
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
 </head>
-<!--<style>-->
-<!--    body{-->
-<!--        background-image: url("hello.jpg");-->
-<!--        -->
-<!--    }-->
-<!--</style>-->
 <body>
 
 <div class="row">
@@ -70,8 +64,8 @@ require __DIR__ . '/vendor/autoload.php';
                         </div>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="form-inline my-2 my-lg-0"  method="post">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="name_articles">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
