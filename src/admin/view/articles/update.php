@@ -1,8 +1,8 @@
 
 
-<form method="POST" action="admin.php?page=updateArticle">
+<form method="POST" action="admin.php?page=updateArticle" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?php echo $article['id']; ?>"/>
-    <div class="card" style="width: 70rem;margin: 30px 80px">
+    <div class="card" style="width: 70rem;">
         <div class="card-body">
             <div class="form-group">
                 <label>Ten Bai Viet</label>
@@ -19,8 +19,9 @@
             </div>
             <div class="input-group mb-3">
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile01" name="img" value="<?php echo $article['img']; ?>">
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    <input type="file" class="custom-file-input" id="inputGroupFile01" name="img"><img style="width:70px" src="img/<?php echo $article['img']; ?>" >
+                    <label class="custom-file-label" for="inputGroupFile01" >Choose file</label>
+                    <input type="hidden" name="img" value="<?php echo $article['img']; ?>">
                 </div>
             </div>
             <div class="form-group">

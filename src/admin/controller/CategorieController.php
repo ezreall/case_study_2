@@ -20,6 +20,10 @@ class CategorieController
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $categories = $this->Categorie->getAllCategorie();
             include 'src/admin/view/categorie/index.php';
+        }else{
+            $categorie_name=$_POST['categorie_name'];
+            $categories=$this->Categorie->searchCaetegorie($categorie_name);
+            include 'src/admin/view/categorie/index.php';
         }
     }
 
@@ -57,6 +61,17 @@ class CategorieController
             var_dump($categorie_name);
             $this->Categorie->updateCategorie($id, $categorie_name);
             header("location:admin.php?page=Categorie_admin");
+        }
+    }
+    public function searchCategorie()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            $categories = $this->Categorie->getAllCategorie();
+            include "src/admin/view/articles/index.php";
+        } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $categorie_name = $_POST['name_articles'];
+            $categories = $this->Categorie->searchCaetegorie($categorie_name);
+            include "src/admin/view/articles/index.php";
         }
     }
 

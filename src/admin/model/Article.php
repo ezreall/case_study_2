@@ -41,6 +41,7 @@ class Article
         $stml->bindValue(":content", $content);
         $stml->bindValue(":img", $img);
         $stml->execute();
+//        var_dump($img);
         return $stml->fetchAll();
     }
 
@@ -70,7 +71,7 @@ class Article
     {
         $sql = "SELECT * FROM articles";
         if (!empty($name_articles)) {
-            $sql = "SELECT * FROM articles WHERE LIKE '%$name_articles%'";
+            $sql = "SELECT * FROM articles WHERE name_articles LIKE '%$name_articles%'";
         }
         $stmt = $this->database->prepare($sql);
         $stmt->execute();

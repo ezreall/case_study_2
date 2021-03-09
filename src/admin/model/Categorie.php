@@ -60,9 +60,13 @@ class Categorie
 
     public function searchCaetegorie($categorie_name)
     {
-        $sql = "SELECT * FROM categories WHERE LIKE '%$categorie_name%'";
-        $stml = $this->database->query($sql);
-        return $stml->fetchAll();
+        $sql = "SELECT * FROM categories";
+        if (!empty($categorie_name)) {
+            $sql = "SELECT * FROM categories WHERE categorie_name LIKE '%$categorie_name%'";
+        }
+        $stmt = $this->database->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 
 

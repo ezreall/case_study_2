@@ -64,10 +64,7 @@ require __DIR__ . '/vendor/autoload.php';
                         </div>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0"  method="post">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="name_articles">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+
             </div>
         </nav>
     </div>
@@ -107,6 +104,10 @@ switch ($page) {
     case 'deleteCategorie':
         $Categorie->deleteCategorie();
         break;
+        case 'searchCategorie':
+        $Categorie->searchCategorie();
+        break;
+
     case 'addComment':
         $Comment->addComment();
         break;
@@ -115,6 +116,9 @@ switch ($page) {
         break;
     case 'deleteComment':
         $Comment->deleteComment();
+        break;
+        case 'searchComment':
+        $Comment->searchComment();
         break;
 }
 ob_end_flush();

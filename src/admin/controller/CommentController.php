@@ -20,6 +20,10 @@ class CommentController
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $comments = $this->Comment->getAllComment();
             include 'src/admin/view/comment/index.php';
+        } else{
+            $username=$_POST['username'];
+            $comments=$this->Comment->searchComment($username);
+           include 'src/admin/view/comment/index.php';
         }
     }
 
@@ -63,17 +67,16 @@ class CommentController
         $this->Comment->deleteComment($id);
         $this->Comment();
     }
+    public function searchComment()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "GET"){
+            $comments= $this->Comment->getAllComment();
+            include "src/admin/view/comment/index.php";
 
-//    public function employeeList()
-//    {
-//        if ($_SERVER["REQUEST_METHOD"] == "GET"){
-//            $employee_list = $this->employeeModel->getAll();
-//            include "src/View/employee/employee-list.php";
-//
-//        }else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//            $search = $_POST['search'];
-//            $employee_list = $this->employeeModel->searchEmployee($search);
-//            include "src/View/employee/employee-list.php";
-//        }
-//    }
+        }else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $username = $_POST['search'];
+            $comments = $this->Comment->searchComment($username);
+            include "src/admin/view/comment/index.php";
+        }
+    }
 }

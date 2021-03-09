@@ -38,7 +38,6 @@ class Comment
             $stml->bindParam(2, $username);
             $stml->bindParam(3, $date);
             $stml->execute();
-             var_dump($stml->execute());
             return $stml->fetchAll();
         }catch (\Exception $exception){
             echo $exception;
@@ -56,10 +55,6 @@ class Comment
             $stml->bindValue(":username", $username);
             $stml->bindValue(":date", $date);
             $stml->bindValue(":article_id", $article_id);
-            var_dump($id);
-            var_dump($content);
-            var_dump($username);
-            var_dump($date);
             $stml->execute();
             return $stml->fetchAll();
         }catch (\Exception $exception){
@@ -76,9 +71,12 @@ class Comment
     }
 
     public function searchComment($username)
-    {
-        $sql = "SELECT * FROM comments WHERE LIKE '%$username%'";
+    {   $sql ="SELECT * FROM comments";
+        if(!empty($username)){
+        $sql = "SELECT * FROM comments WHERE username LIKE '%$username%'";
+    }
         $stml = $this->database->query($sql);
+        $stml->execute();
         return $stml->fetchAll();
     }
 
