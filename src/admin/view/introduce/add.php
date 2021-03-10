@@ -4,14 +4,14 @@ if (isset($message)) {
 }
 ?>
 <div class="card" style="width: 70rem;margin-left: 250px">
-<form method="post" action="admin.php?page=addCategorie">
+<form method="post" action="admin.php?page=addIntroduce">
     <div class="form-group">
-        <label>Tên Bài Viết</label>
-        <input type="text" name="categorie_name" class="form-control"/>
+        <label>Nội Dung</label>
+        <textarea name="content" class="form-control"></textarea>
     </div>
     <div class="form-group">
         <input type="submit" value="Create" class="btn btn-primary"/>
-        <a href="admin.php?page=Categorie_admin" class="btn btn-default">Cancel</a>
+        <a href="admin.php?page=Comment_admin" class="btn btn-default">Cancel</a>
     </div>
 </form>
 </div>

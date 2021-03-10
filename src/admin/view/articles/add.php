@@ -4,7 +4,7 @@ if(isset($message)){
     echo "<p class='alert-info'>$message</p>";
 }
 ?>
-<div class="card" style="width: 70rem;margin: 30px 80px">
+<div class="card" style="width:70rem;margin: 30px 250px">
     <div class="card-body">
 <form method="post" action="admin.php?page=addArticle" enctype="multipart/form-data">
     <div class="form-group">

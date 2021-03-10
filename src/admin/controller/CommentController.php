@@ -48,9 +48,7 @@ class CommentController
             $comments = $this->Comment->getComment($id);
             var_dump($comments);
             include 'src/admin/view/comment/update.php';
-            //var_dump($_SERVER['REQUEST_METHOD']);
         } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            var_dump($_SERVER['REQUEST_METHOD']);
             $article_id = 1333;
             $id = (int)$_POST['id'];
             $content = $_POST['content'];

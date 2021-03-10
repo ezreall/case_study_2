@@ -1,16 +1,16 @@
 <nav class="navbar navbar-light bg-light">
     <form class="form-inline " method="post">
         <div style="margin-left: 1060px">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="username">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="username">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </div>
-</form>
+    </form>
 </nav>
 
-<?php foreach ($comments as $comment): ?>
+<?php foreach ($introduces as $introduce): ?>
     <div class="card" style="width: 70rem;margin-left: 250px">
         <div class="card-header">
-            <h5> <?php echo $comment['content']; ?></h5>
+            <h5> <?php echo $introduce['content']; ?></h5>
         </div>
         <div class="card-body">
 
