@@ -16,7 +16,7 @@ class Article
 
     public function getAllArticle()
     {
-        $sql = "SELECT * FROM articles";
+        $sql = "SELECT * FROM v_article_details";
         $stmt = $this->database->query($sql);
         return $stmt->fetchAll();
     }
@@ -30,27 +30,29 @@ class Article
         return $stml->fetch();
     }
 
-    public function addArticle($categorie_id, $id, $name_articles, $date, $content,$img)
+    public function addArticle($category_id, $id, $name_articles, $date, $content,$img)
     {
-        $sql = "INSERT INTO articles(categorie_id,id,name_articles,date,content,img) VALUES(:categorie_id,:id,:name_articles,:date,:content,:img)";
+
+        $sql = "INSERT INTO articles(`category_id`,`id`,`name_articles`,`date`,`content`,`img`) VALUES(:category_id,:id,:name_articles,:date,:content,:img)";
         $stml = $this->database->prepare($sql);
-        $stml->bindValue(":categorie_id", $categorie_id);
+        $stml->bindValue(":category_id", $category_id);
         $stml->bindValue(":id", $id);
         $stml->bindValue(":name_articles", $name_articles);
         $stml->bindValue(":date", $date);
         $stml->bindValue(":content", $content);
         $stml->bindValue(":img", $img);
+        var_dump($category_id);
+
         $stml->execute();
-//        var_dump($img);
         return $stml->fetchAll();
     }
 
-    public function updateArticle($categorie_id, $id ,$name_articles, $date, $content,$img)
+    public function updateArticle($category_id, $id ,$name_articles, $date, $content,$img)
     {
-        $sql = "UPDATE  articles SET categorie_id=:categorie_id,name_articles=:name_articles,date=:date,content=:content,img=:img WHERE id=:id";
+        $sql = "UPDATE  articles SET category_id=:category_id,name_articles=:name_articles,date=:date,content=:content,img=:img WHERE id=:id";
         $stml = $this->database->prepare($sql);
         $stml->bindValue(":id", $id);
-        $stml->bindValue(":categorie_id",  123);
+        $stml->bindValue(":category_id",  123);
         $stml->bindValue(":name_articles", $name_articles);
         $stml->bindValue(":date", $date);
         $stml->bindValue(":content", $content);
@@ -77,5 +79,6 @@ class Article
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
 
 }

@@ -20,13 +20,16 @@ class Introduce
         $stmt = $this->database->query($sql);
         return $stmt->fetchAll();
     }
-    public function getIntroduce($id){
+
+    public function getIntroduce($id)
+    {
         $sql = "SELECT * FROM introduces WHERE id= :id";
         $stml = $this->database->prepare($sql);
         $stml->bindParam(':id', $id);
         $stml->execute();
         return $stml->fetch();
     }
+
     public function addIntroduce($content)
     {
         $sql = "INSERT INTO  introduces (content) VALUE (?)";
@@ -35,14 +38,22 @@ class Introduce
         $stmt->execute();
         return $stmt->fetchAll();
     }
-//
-//    public function updateIntroduce($id, $content)
-//    {
-//        $sql = " UPDATE introduces SET content=:content where id=:id";
-//        $stmt = $this->database->prepare($sql);
-//        $stmt->bindValue(':id', $id);
-//        $stmt->bindValue('content', $content);
-//        $stmt->execute();
-//        return $stmt->fetchAll();
-//    }
+
+    public function updateIntroduce($id, $content)
+    {
+        $sql = " UPDATE introduces SET content=:content where id=:id";
+        $stmt = $this->database->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        $stmt->bindValue('content', $content);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function deleteIntroduce($id)
+    {
+        $sql = "DELETE FROM introduces WHERE id=:id";
+        $stml = $this->database->prepare($sql);
+        $stml->bindParam(':id', $id);
+        $stml->execute();
+    }
 }

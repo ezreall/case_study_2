@@ -5,7 +5,7 @@ namespace App\Admin\Model;
 
 use PDO;
 
-class Categorie
+class Category
 {
     public $database;
 
@@ -15,14 +15,14 @@ class Categorie
         $this->database = $db->connect();
     }
 
-    public function getAllCategorie()
+    public function getAllCategory()
     {
         $sql = "SELECT * FROM categories";
         $stmt = $this->database->query($sql);
         return $stmt->fetchAll();
 
     }
-    public function getCategorie($id)
+    public function getCategory($id)
     {
         $sql = "SELECT * FROM categories WHERE id=:id";
         $stml = $this->database->prepare($sql);
@@ -31,26 +31,26 @@ class Categorie
         return $stml->fetch();
     }
 
-    public function addCategorie($categorie_name)
+    public function addCategory($category_name)
     {
-        $sql = "INSERT INTO categories(categorie_name) VALUES(:categorie_name)";
+        $sql = "INSERT INTO categories(category_name) VALUES(:category_name)";
         $stml = $this->database->prepare($sql);
-        $stml->bindValue(":categorie_name", $categorie_name);
+        $stml->bindValue(":category_name", $category_name);
         $stml->execute();
         return $stml->fetchAll();
     }
 
-    public function updateCategorie($id,$categorie_name)
+    public function updateCategory($id,$category_name)
     {
-        $sql = "UPDATE categories SET categorie_name=:categorie_name WHERE id=:id";
+        $sql = "UPDATE categories SET category_name=:category_name WHERE id=:id";
         $stml = $this->database->prepare($sql);
         $stml->bindValue(":id", $id);
-        $stml->bindValue("categorie_name", $categorie_name);
+        $stml->bindValue("category_name", $category_name);
         $stml->execute();
         return $stml->fetchAll();
     }
 
-    public function deleteCategorie($id)
+    public function deleteCategory($id)
     {
         $sql = "DELETE FROM categories WHERE id=:id";
         $stml = $this->database->prepare($sql);
@@ -58,11 +58,11 @@ class Categorie
         $stml->execute();
     }
 
-    public function searchCaetegorie($categorie_name)
+    public function searchCategory($category_name)
     {
         $sql = "SELECT * FROM categories";
-        if (!empty($categorie_name)) {
-            $sql = "SELECT * FROM categories WHERE categorie_name LIKE '%$categorie_name%'";
+        if (!empty($category_name)) {
+            $sql = "SELECT * FROM categories WHERE category_name LIKE '%$category_name%'";
         }
         $stmt = $this->database->prepare($sql);
         $stmt->execute();

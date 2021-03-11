@@ -1,7 +1,7 @@
 <?php
 
 use App\Admin\Controller\ArticleController;
-use App\Admin\Controller\CategorieController;
+use App\Admin\Controller\CategoryController;
 use App\Admin\Controller\CommentController;
 use App\Admin\Controller\IntroduceController;
 
@@ -21,11 +21,9 @@ require __DIR__ . '/vendor/autoload.php';
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
 
-<!--     Bootstrap core CSS-->
     <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!--     Custom styles for this template-->
-   <link href="https://getbootstrap.com/docs/4.0/examples/dashboard/dashboard.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/4.0/examples/dashboard/dashboard.css" rel="stylesheet">
 </head>
 
 <body>
@@ -52,9 +50,9 @@ require __DIR__ . '/vendor/autoload.php';
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin.php?page=Categorie_admin">
+                        <a class="nav-link" href="admin.php?page=Category_admin">
                             <span data-feather="file"></span>
-                            Danh Mục
+                            Chuyen Mục
                         </a>
                     </li>
                     <li class="nav-item">
@@ -70,7 +68,7 @@ require __DIR__ . '/vendor/autoload.php';
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin.php?page=Introducte_admin">
+                        <a class="nav-link" href="admin.php?page=Introduce_admin">
                             <span data-feather="credit-card"></span>
                             Giới Thiệu
                         </a>
@@ -82,7 +80,7 @@ require __DIR__ . '/vendor/autoload.php';
                             Thêm Mới
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="admin.php?page=addCategorie">Chuyên Mục</a>
+                            <a class="dropdown-item" href="admin.php?page=addCategory">Chuyên Mục</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="admin.php?page=addArticle">Bài Viết</a>
                             <div class="dropdown-divider"></div>
@@ -154,12 +152,12 @@ require __DIR__ . '/vendor/autoload.php';
 <?php
 $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : "";
 $Article = new ArticleController();
-$Categorie = new CategorieController();
+$Category = new CategoryController();
 $Comment = new CommentController();
-$Introducte = new IntroduceController();
+$Introduce = new IntroduceController();
 switch ($page) {
-    case 'Categorie_admin':
-        $Categorie->Categorie();
+    case 'Category_admin':
+        $Category->Category();
         break;
     case 'Article_admin':
         $Article->Article();
@@ -168,7 +166,7 @@ switch ($page) {
         $Comment->Comment();
         break;
     case'Introduce_admin':
-        $Introducte->Introduce();
+        $Introduce->Introduce();
         break;
     case 'addArticle':
         $Article->addArticle();
@@ -182,17 +180,17 @@ switch ($page) {
     case 'searchArticle':
         $Article->searchArticle();
         break;
-    case 'addCategorie':
-        $Categorie->addCategorie();
+    case 'addCategory':
+        $Category->addCategory();
         break;
-    case 'updateCategorie':
-        $Categorie->updateCategorie();
+    case 'updateCategory':
+        $Category->updateCategory();
         break;
-    case 'deleteCategorie':
-        $Categorie->deleteCategorie();
+    case 'deleteCategory':
+        $Category->deleteCategory();
         break;
-    case 'searchCategorie':
-        $Categorie->searchCategorie();
+    case 'searchCategory':
+        $Category->searchCategory();
         break;
     case 'addComment':
         $Comment->addComment();
@@ -207,10 +205,13 @@ switch ($page) {
         $Comment->searchComment();
         break;
     case 'addIntroduce':
-        $Introducte->addIntroduce();
+        $Introduce->addIntroduce();
         break;
-    case 'updateIntroducte':
-        $Introducte->updateIntroduce();
+    case 'updateIntroduce':
+        $Introduce->updateIntroduce();
+        break;
+        case 'deleteIntroduce':
+        $Introduce->deleteIntroduce();
         break;
 }
 ob_end_flush();

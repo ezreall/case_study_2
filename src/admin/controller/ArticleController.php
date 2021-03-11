@@ -4,16 +4,19 @@ namespace App\Admin\Controller;
 
 use App\Admin\Model\Article;
 use App\Admin\Model\Comment;
+use App\Admin\Model\Category;
 use http\Header;
 
 class ArticleController
 {
 
     protected $Article;
+    protected $categories;
 
     public function __construct()
     {
         $this->Article = new Article();
+        $this->categories = new Category();
     }
 
     public function Article()
@@ -21,19 +24,17 @@ class ArticleController
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $articles = $this->Article->getAllArticle();
             include 'src/admin/view/articles/index.php';
-        }else {
+        } else {
             $name_articles = $_POST['name_articles'];
-//            var_dump($name_articles);
-          $articles=$this->Article->searchArticle($name_articles);
+            $articles = $this->Article->searchArticle($name_articles);
             include 'src/admin/view/articles/index.php';
-//            var_dump($articles);
         }
     }
 
     public function addArticle()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            $articles = $this->Article->getAllArticle();
+            $categories = $this->categories->getAllCategory();
             include 'src/admin/view/articles/add.php';
         } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $category_id = $_POST['category_id'];
@@ -44,11 +45,11 @@ class ArticleController
             $img = $_FILES['img']['name'];
             $img_tmp = $_FILES['img']['tmp_name'];
             move_uploaded_file($img_tmp, 'img/' . $img);
-            if ($img==null){
-                $img=$_POST['img'];
+            if ($img == null) {
+                $img = $_POST['img'];
             }
-            $this->Article->addArticle($category_id, $id, $name_articles, $date, $content,$img);
-            include 'src/admin/view/articles/add.php';
+            $this->Article->addArticle($category_id, $id, $name_articles, $date, $content, $img);
+            header('location:admin.php?page=Article_admin');
 //            echo "<pre>";
 //            print_r($_FILES);
 //            die;
@@ -70,7 +71,7 @@ class ArticleController
             $article = $this->Article->getArticle($id);
             include 'src/admin/view/articles/update.php';
         } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $categorie_id = 1333;
+            $category_id = 133;
             $id = (int)$_POST['id'];
             $name_articles = $_POST['name_articles'];
             $date = $_POST['date'];
@@ -78,11 +79,11 @@ class ArticleController
             $img = $_FILES['img']['name'];
             $img_tmp = $_FILES['img']['tmp_name'];
             move_uploaded_file($img_tmp, 'img/' . $img);
-            var_dump($content);
-            $this->Article->updateArticle($categorie_id, $id, $name_articles, $date, $content, $img);
+            $this->Article->updateArticle($category_id, $id, $name_articles, $date, $content, $img);
             header('location:admin.php?page=Article_admin');
         }
     }
+
     public function searchArticle()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {

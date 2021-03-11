@@ -2,7 +2,7 @@
 
 <form method="POST" action="admin.php?page=updateArticle" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?php echo $article['id']; ?>"/>
-    <div class="card" style="width: 70rem; margin-left: 250px">
+    <div class="card" style="width: 60rem; margin-left: 250px">
         <div class="card-body">
             <div class="form-group">
                 <label>Ten Bai Viet</label>

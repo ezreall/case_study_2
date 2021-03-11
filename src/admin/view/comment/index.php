@@ -8,7 +8,7 @@
 </nav>
 
 <?php foreach ($comments as $comment): ?>
-    <div class="card" style="width: 70rem;margin-left: 250px">
+    <div class="card" style="width: 60rem;margin-left: 250px">
         <div class="card-header">
             <h5> <?php echo $comment['content']; ?></h5>
         </div>
