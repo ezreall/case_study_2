@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Model;
+
+namespace App\model;
 
 use PDO;
 
@@ -12,11 +13,14 @@ class UserArticle
     {
         $db = new DBConnect();
         $this->database = $db->connect();
-    }
 
-    public function getAllArticle()
+    }
+    public function getArticle()
     {
+
         $sql = "SELECT * FROM v_article_details";
         $stmt = $this->database->query($sql);
         return $stmt->fetchAll();
-    }}
+    }
+
+}

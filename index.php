@@ -1,16 +1,29 @@
 <?php
 
+use App\Admin\Model\Article;
+use App\Admin\Model\Comment;
 use App\Admin\Model\Category;
 use App\Admin\Model\Introduce;
-use App\Model\UserArticle;
-use App\Model\UserCategory;
+use App\Controller\UserArticleController;
+
 ob_start();
 require __DIR__ . '/vendor/autoload.php';
-//$Introduce = new Introduce();
-//$introduces = $Introduce->getALlIntroduce();
-//$Category = new Category();
-//$categories =$Category->getAllCategory();
+$Article = new Article();
+$Articles = $Article->getAllArticle();
+$Introduce = new Introduce();
+$introduces = $Introduce->getALlIntroduce();
+$Category = new Category();
+$categories = $Category->getAllCategory();
+
+
+//$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : "";
+//$UserArticle = new UserArticleController();
+//switch ($page) {
+//    case 'index':
+//        $UserArticle->ArticleController();
+//}
 ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,13 +35,11 @@ require __DIR__ . '/vendor/autoload.php';
 
     <title>Jumbotron Template for Bootstrap</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
 
-    <!-- Bootstrap core CSS -->
-    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/4.0/examples/jumbotron/jumbotron.css" rel="stylesheet">
+        <link href="https://getbootstrap.com/docs/4.0/examples/jumbotron/jumbotron.css" rel="stylesheet">
 </head>
 
 <body>
@@ -44,16 +55,16 @@ require __DIR__ . '/vendor/autoload.php';
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false" >Chuyen Muc
+                   aria-haspopup="true" aria-expanded="false">Chuyen Muc
 
-                <select id="id" name="category_id">
+                    <select id="id" name="category_id">
 
-                    <?php foreach ($categories as $category): ?>
-                        <option value="<?php echo $category['id']; ?>"> <?php echo $category['category_name']; ?>
+                        <?php foreach ($categories as $category): ?>
+                            <option value="<?php echo $category['id']; ?>"> <?php echo $category['category_name']; ?>
 
-                        </option>
-                    <?php endforeach; ?>
-                </select>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
                 </a>
             </li>
         </ul>
@@ -79,7 +90,7 @@ require __DIR__ . '/vendor/autoload.php';
                 <div class="card card-body">
                     <div class="modal-body">
                         <?php foreach ($introduces as $introduce):
-                            ?>
+                            ; ?>
                             <?php echo $introduce['content']; ?>
                         <?php endforeach; ?>
                     </div>
@@ -95,16 +106,12 @@ require __DIR__ . '/vendor/autoload.php';
 
         <div class="row">
             <div class="col-md-4">
-                <h2>Heading</h2>
+                <?php foreach ($Articles as $article): ?>
+                   <h5> <?php echo $article['category_name']; ?></h5>
+
+                    <?php echo $article['name_articles']; ?>
                 <p><a class="btn btn-secondary" href="" role="button">View details &raquo;</a></p>
-            </div>
-            <div class="col-md-4">
-                <h2>Heading</h2>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div>
-            <div class="col-md-4">
-                <h2>Heading</h2>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                <?php endforeach; ?>
             </div>
         </div>
 

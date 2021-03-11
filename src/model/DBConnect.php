@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Model;
+
+namespace App\model;
 
 use PDO;
-
 class DBConnect
 {
     protected $dsn;
