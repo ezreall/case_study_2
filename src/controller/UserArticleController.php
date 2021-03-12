@@ -15,14 +15,15 @@ class UserArticleController
     public function __construct()
     {
         $this->UserArticle = new UserArticle();
-
+        $this->UserCategory = new UserCategory();
     }
 
-    public function UserArticle()
+    public function getArticle()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-//            $userarticles = $this->UserArticle->getArticle();
-            include 'src/view/list.php';
+            $id = (int)$_REQUEST['id'];
+            $userarticles = $this->UserArticle->getArticle($id);
+            include 'list.php';
         }
 
     }

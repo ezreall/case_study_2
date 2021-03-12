@@ -30,7 +30,9 @@ class Article
         return $stml->fetch();
     }
 
-    public function addArticle($category_id, $id, $name_articles, $date, $content,$img)
+
+
+    public function addArticle($category_id, $id, $name_articles, $date, $content, $img)
     {
 
         $sql = "INSERT INTO articles(`category_id`,`id`,`name_articles`,`date`,`content`,`img`) VALUES(:category_id,:id,:name_articles,:date,:content,:img)";
@@ -47,7 +49,7 @@ class Article
         return $stml->fetchAll();
     }
 
-    public function updateArticle($category_id, $id ,$name_articles, $date, $content,$img)
+    public function updateArticle($category_id, $id, $name_articles, $date, $content, $img)
     {
 
         $sql = "UPDATE  articles SET category_id=:category_id,name_articles=:name_articles,date=:date,content=:content,img=:img WHERE id=:id";
@@ -59,7 +61,7 @@ class Article
         $stml->bindValue(":content", $content);
         $stml->bindValue(":img", $img);
 
-       $hello= $stml->execute();
+        $hello = $stml->execute();
         return $stml->fetchAll();
     }
 

@@ -30,20 +30,13 @@ class ArticleController
             $articles = $this->Article->searchArticle($name_articles);
             include 'src/admin/view/articles/index.php';
         }
-    }public function UserArticle()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            $articles = $this->Article->getAllArticle();
-//            var_dump($articles);
-            include 'src/admin/view/articles/user.php';
-//        } else {
-//            $name_articles = $_POST['name_articles'];
-//            $articles = $this->Article->searchArticle($name_articles);
-//            include 'src/admin/view/articles/index.php';
-        }
     }
 
-    public function addArticle()
+
+
+
+    public
+    function addArticle()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $categories = $this->categories->getAllCategory();
@@ -70,14 +63,16 @@ class ArticleController
         }
     }
 
-    public function deleteArticle()
+    public
+    function deleteArticle()
     {
         $id = $_REQUEST['id'];
         $this->Article->deleteArticle($id);
         $this->Article();
     }
 
-    public function updateArticle()
+    public
+    function updateArticle()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $id = (int)$_REQUEST['id'];
@@ -87,7 +82,7 @@ class ArticleController
 
             include 'src/admin/view/articles/update.php';
         } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $category_id =(int)$_POST['category_id'];
+            $category_id = (int)$_POST['category_id'];
 //            var_dump($category_id);
             $id = (int)$_POST['id'];
             $name_articles = $_POST['name_articles'];
@@ -103,7 +98,8 @@ class ArticleController
         }
     }
 
-    public function searchArticle()
+    public
+    function searchArticle()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $articles = $this->Article->getAllArticle();

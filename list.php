@@ -9,7 +9,7 @@ use App\Controller\UserArticleController;
 ob_start();
 require __DIR__ . '/vendor/autoload.php';
 $Article = new Article();
-$Articles = $Article->getAllArticle();
+$Articles = $Article->getAllArticle($id);
 $Introduce = new Introduce();
 $introduces = $Introduce->getALlIntroduce();
 $Category = new Category();
@@ -54,7 +54,7 @@ switch ($page) {
 
     <!-- Header -->
     <header class="w3-container w3-center w3-padding-32">
-        <h1><b>MY BLOG</b></h1>
+        <h1><a href="index.php">MY BLOG</a></h1>
         <p>Welcome to the blog of <span class="w3-tag"> Thắng </span></p>
     </header>
 
@@ -71,7 +71,7 @@ switch ($page) {
                     <div class="w3-container">
                         <h3><b> <?php echo $article['category_name']; ?></b></h3>
                         <h5><span class="w3-opacity"><?php echo $article['name_articles']; ?></span></h5>
-                        <p> <?php echo substr($article['content'], 0, 300); ?></p>
+                        <p> <?php echo $article['content']; ?></p>
                     </div>
 
                     <div class="w3-container">
