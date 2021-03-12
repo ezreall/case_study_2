@@ -23,4 +23,6 @@ class UserArticle
         return $stmt->fetchAll();
     }
 
+
+
 }

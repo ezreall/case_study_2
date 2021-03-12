@@ -18,12 +18,11 @@ class UserArticleController
 
     }
 
-    public function ArticleController()
+    public function UserArticle()
     {
-
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            $userarticles = $this->UserArticle->getArticle();
-            include 'index.php';
+//            $userarticles = $this->UserArticle->getArticle();
+            include 'src/view/list.php';
         }
 
     }

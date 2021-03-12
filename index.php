@@ -16,123 +16,173 @@ $Category = new Category();
 $categories = $Category->getAllCategory();
 
 
-//$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : "";
-//$UserArticle = new UserArticleController();
-//switch ($page) {
-//    case 'index':
-//        $UserArticle->ArticleController();
-//}
+$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : "";
+$user = new UserArticleController();
+switch ($page) {
+    case 'list':
+        $user->UserArticle();
+        break;
+}
 ?>
+<!DOCTYPE html>
+<html>
+<title>BLogMVC</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+    body, h1, h2, h3, h4, h5 {
+        font-family: "Raleway", sans-serif
+    }
+</style>
+<body class="w3-light-grey">
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+<div class="w3-content" style="max-width:1400px">
 
-    <title>Jumbotron Template for Bootstrap</title>
+    <!-- Header -->
+    <header class="w3-container w3-center w3-padding-32">
+        <h1><b>MY BLOG</b></h1>
+        <p>Welcome to the blog of <span class="w3-tag"> Thắng </span></p>
+    </header>
 
-        <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
+    <!-- Grid -->
+    <div class="w3-row">
 
-        <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Blog entries -->
+        <div class="w3-col l8 s12">
+            <!-- Blog entry -->
+            <div class="w3-card-4 w3-margin w3-white">
+                <?php foreach ($Articles as $article): ?>
 
-        <link href="https://getbootstrap.com/docs/4.0/examples/jumbotron/jumbotron.css" rel="stylesheet">
-</head>
-
-<body>
-
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="index.php">Trang Chu</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">Chuyen Muc
-
-                    <select id="id" name="category_id">
-
-                        <?php foreach ($categories as $category): ?>
-                            <option value="<?php echo $category['id']; ?>"> <?php echo $category['category_name']; ?>
-
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
-    <img src="" alt="">
-</nav>
-<main role="main">
-    <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-3"> Cách Sử Dụng Bootstrap Đẹp Như EM Ahihi </h1>
-
-            <p>
-                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
-                   aria-expanded="false" aria-controls="collapseExample">
-                    Có gì hay ho ở đây
-                </a>
-            </p>
-            <div class="collapse" id="collapseExample">
-                <div class="card card-body">
-                    <div class="modal-body">
-                        <?php foreach ($introduces as $introduce):
-                            ; ?>
-                            <?php echo $introduce['content']; ?>
-                        <?php endforeach; ?>
+                    <img style="width: 100%" src="img/<?php echo $article['img']; ?>">
+                    <div class="w3-container">
+                        <h3><b> <?php echo $article['category_name']; ?></b></h3>
+                        <h5><span class="w3-opacity"><?php echo $article['name_articles']; ?></span></h5>
+                        <p> <?php echo substr($article['content'], 0, 300); ?></p>
                     </div>
+
+                    <div class="w3-container">
+                        <p></p>
+                        <div class="w3-row">
+                            <div class="w3-col m8 s12">
+
+                                <p>
+
+                                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample"
+                                       role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        Click Here
+                                    </a> &raquo;
+                                </p>
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body">
+                                        <?php foreach ($introduces as $introduce): ?>
+                                            <?php echo $introduce['content']; ?>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w3-col m4 w3-hide-small">
+                                <p><span class="w3-padding-large w3-right"><b>Comments &nbsp;</b> <span
+                                                class="w3-tag">0</span></span></p>
+
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+
+            </div>
+
+            <hr>
+
+
+        </div>
+
+        <div class="w3-col l4">
+            <!-- About Card -->
+            <div class="w3-card w3-margin w3-margin-top">
+                <img src="img/Screen Shot 2021-03-04 at 01.07.28.png" style="width:100%">
+                <div class="w3-container w3-white">
+                    <h4><b> <?php foreach ($introduces as $introduce): ?>
+                                <?php echo $introduce['content']; ?>
+                            <?php endforeach; ?></b></h4>
+                    <p></p>
                 </div>
             </div>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
+            <hr>
 
-    <div class="container">
-
-        <div class="row">
-            <div class="col-md-4">
-                <?php foreach ($Articles as $article): ?>
-                   <h5> <?php echo $article['category_name']; ?></h5>
-
-                    <?php echo $article['name_articles']; ?>
-                <p><a class="btn btn-secondary" href="" role="button">View details &raquo;</a></p>
-                <?php endforeach; ?>
+            <!-- Posts -->
+            <div class="w3-card w3-margin">
+                <div class="w3-container w3-padding">
+                    <h4>Popular Posts</h4>
+                </div>
+                <ul class="w3-ul w3-hoverable w3-white">
+                    <li class="w3-padding-16">
+                        <img src="/w3images/workshop.jpg" alt="Image" class="w3-left w3-margin-right"
+                             style="width:50px">
+                        <span class="w3-large">Lorem</span><br>
+                        <span>Sed mattis nunc</span>
+                    </li>
+                    <li class="w3-padding-16">
+                        <img src="/w3images/gondol.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+                        <span class="w3-large">Ipsum</span><br>
+                        <span>Praes tinci sed</span>
+                    </li>
+                    <li class="w3-padding-16">
+                        <img src="/w3images/skies.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+                        <span class="w3-large">Dorum</span><br>
+                        <span>Ultricies congue</span>
+                    </li>
+                    <li class="w3-padding-16 w3-hide-medium w3-hide-small">
+                        <img src="/w3images/rock.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+                        <span class="w3-large">Mingsum</span><br>
+                        <span>Lorem ipsum dipsum</span>
+                    </li>
+                </ul>
             </div>
+            <hr>
+
+            <!-- Labels / tags -->
+            <div class="w3-card w3-margin">
+                <div class="w3-container w3-padding">
+                    <h4>Tags</h4>
+                </div>
+                <div class="w3-container w3-white">
+                    <p><span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span
+                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">New York</span> <span
+                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">London</span>
+                        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">IKEA</span> <span
+                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">NORWAY</span> <span
+                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">DIY</span>
+                        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Ideas</span> <span
+                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Baby</span> <span
+                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Family</span>
+                        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">News</span> <span
+                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Clothing</span> <span
+                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Shopping</span>
+                        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Sports</span> <span
+                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Games</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- END Introduction Menu -->
         </div>
 
-        <hr>
-
+        <!-- END GRID -->
     </div>
+    <br>
 
-</main>
+    <!-- END w3-content -->
+</div>
 
-<footer class="container">
-    <p></p>
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+    <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
+    <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Next &raquo;</button>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
 </footer>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-<script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>
-<script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
+

@@ -41,22 +41,24 @@ class Article
         $stml->bindValue(":date", $date);
         $stml->bindValue(":content", $content);
         $stml->bindValue(":img", $img);
-        var_dump($category_id);
-
+//        var_dump($category_id);
+//        var_dump(123);
         $stml->execute();
         return $stml->fetchAll();
     }
 
     public function updateArticle($category_id, $id ,$name_articles, $date, $content,$img)
     {
+
         $sql = "UPDATE  articles SET category_id=:category_id,name_articles=:name_articles,date=:date,content=:content,img=:img WHERE id=:id";
         $stml = $this->database->prepare($sql);
+        $stml->bindValue(":category_id", $category_id);
         $stml->bindValue(":id", $id);
-        $stml->bindValue(":category_id",  123);
         $stml->bindValue(":name_articles", $name_articles);
         $stml->bindValue(":date", $date);
         $stml->bindValue(":content", $content);
         $stml->bindValue(":img", $img);
+
        $hello= $stml->execute();
         return $stml->fetchAll();
     }

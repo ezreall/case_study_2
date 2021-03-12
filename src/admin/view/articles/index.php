@@ -10,6 +10,7 @@
 
 
 <?php foreach ($articles as $article): ?>
+
     <div class="card " style="width: 60rem;margin-left: 250px">
         <div class="card-header"
         <h5> <?php echo $article['category_name'];?>

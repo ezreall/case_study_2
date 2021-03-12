@@ -23,11 +23,23 @@ class ArticleController
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $articles = $this->Article->getAllArticle();
+//            var_dump($articles);
             include 'src/admin/view/articles/index.php';
         } else {
             $name_articles = $_POST['name_articles'];
             $articles = $this->Article->searchArticle($name_articles);
             include 'src/admin/view/articles/index.php';
+        }
+    }public function UserArticle()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            $articles = $this->Article->getAllArticle();
+//            var_dump($articles);
+            include 'src/admin/view/articles/user.php';
+//        } else {
+//            $name_articles = $_POST['name_articles'];
+//            $articles = $this->Article->searchArticle($name_articles);
+//            include 'src/admin/view/articles/index.php';
         }
     }
 
@@ -35,6 +47,7 @@ class ArticleController
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $categories = $this->categories->getAllCategory();
+//            var_dump($categories);
             include 'src/admin/view/articles/add.php';
         } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $category_id = $_POST['category_id'];
@@ -68,10 +81,14 @@ class ArticleController
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $id = (int)$_REQUEST['id'];
+            $categories = $this->categories->getALlCategory();
+//            var_dump($categories);
             $article = $this->Article->getArticle($id);
+
             include 'src/admin/view/articles/update.php';
         } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $category_id = 133;
+            $category_id =(int)$_POST['category_id'];
+//            var_dump($category_id);
             $id = (int)$_POST['id'];
             $name_articles = $_POST['name_articles'];
             $date = $_POST['date'];
@@ -79,6 +96,8 @@ class ArticleController
             $img = $_FILES['img']['name'];
             $img_tmp = $_FILES['img']['tmp_name'];
             move_uploaded_file($img_tmp, 'img/' . $img);
+//            var_dump(123);
+//            die;
             $this->Article->updateArticle($category_id, $id, $name_articles, $date, $content, $img);
             header('location:admin.php?page=Article_admin');
         }
